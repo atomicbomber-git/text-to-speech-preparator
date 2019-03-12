@@ -3,9 +3,11 @@ from preprocessor import preprocess
 from tagger import tag
 from chunker import chunk
 from normalizer import normalize
+from flask_cors import CORS
 import waitress
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route("/", methods=["POST"])

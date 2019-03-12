@@ -7,6 +7,7 @@ import waitress
 
 app = Flask(__name__)
 
+
 @app.route("/", methods=["POST"])
 def process():
 
@@ -16,7 +17,6 @@ def process():
     text = chunk(text)
     text = normalize(text)
 
-
     return jsonify({
         "status": "success",
         "message": "Request successful",
@@ -24,5 +24,6 @@ def process():
             "text": text
         }
     })
+
 
 waitress.serve(app, host="0.0.0.0", port=8070)

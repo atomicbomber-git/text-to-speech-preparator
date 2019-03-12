@@ -17,6 +17,7 @@ grammar = r"""
                 
         """
 
+
 def chunk(text):
     for line in text.split("\n"):
 
@@ -42,6 +43,7 @@ def chunk(text):
                             else:
                                 text_result += (str(item) + "\n")
     return text_result
+
 
 if __name__ == "__main__":
     print(chunk(sys.argv[1]))

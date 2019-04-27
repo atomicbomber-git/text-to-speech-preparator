@@ -47,4 +47,3 @@ def chunk(text):
 
 if __name__ == "__main__":
     print(chunk(sys.argv[1]))
-    # print(chunk(sys.argv[1]) )

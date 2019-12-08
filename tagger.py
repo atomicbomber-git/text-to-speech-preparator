@@ -4,10 +4,12 @@ import requests
 
 
 def tag(text, server_url):
+    # Mengirimkan data teks yang hendak diproses ke server tagging untuk di proses
     response = requests.post(server_url, data={
         "text": text
     })
 
+    # Mengembalikan data teks yang telah diproses oleh server tagging
     return response.json()["text"]
 
 

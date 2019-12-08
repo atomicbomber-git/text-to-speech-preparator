@@ -22,10 +22,14 @@ grammar = r"""
 def chunk(text):
     for line in text.split("\n"):
 
+        # Mentag setiap kata yang ada dari kalimat input yg dibersihkan dari spasi di sisi kiri dan kanan terlebih dahulu
         sentence = [nltk.tag.str2tuple(t) for t in line.strip().split()]
+        
+        # Melakukan parsing terhadap kalimat
         result = nltk.RegexpParser(grammar).parse(sentence)
 
         text_result = ""
+        # Memproses satu per satu hasil parsing; Jika hasil berupa tanda baca, maka tanda baca tersebut akan ditambahkan ke output beserta dengan tanda akhir baris ('\n'). Jika hasil bukan merupakan tanda baca maka hasil langsung ditambahkan ke ke output beserta dangan tanda akhir baris ('\n')
         for i, item in enumerate(result):
             if item.count(',') != 0:
                 text_result += (',' + "\n")
@@ -45,4 +49,3 @@ def chunk(text):
 
 if __name__ == "__main__":
     print(chunk(sys.argv[1]))
-    # print(chunk(sys.argv[1]) )

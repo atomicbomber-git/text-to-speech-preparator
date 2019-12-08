@@ -13,6 +13,7 @@ substitution_map = {
 
 
 def preprocess(text):
+    # Melakukan konversi karakter sesuai dengan daftar yang telah dibuat diatas
     for key, value in substitution_map.items():
         text = text.replace(key, value)
 

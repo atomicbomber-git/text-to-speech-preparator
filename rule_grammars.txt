@@ -1,0 +1,42 @@
+
+Fix 1:
+G1 : { <NN> <IN> <CDP> }
+        G2 : { <NN> <VBT> <IN> }
+
+        KP : { <SC|RP|UH>+ }
+        VP : { <VBI|VBT|MD>+ <NN|RB>*}
+        NP : { <WP|PRP|PRN>+ }
+
+        G3 : { <IN> <NN>* <VP>+ }
+        G4 : { <KP>+ <NP|VP|KP|G3|NN|PRL>+ }
+        G5 : { <NP|CC|RB|NEG|MD>+ <VP|G1|NP|G3|CDI|DT|PRL>+ }
+        G6 : { <VP> <G3> }
+
+Fix 2:
+G1 : { <NN> <IN> <CDP> }
+        G2 : { <NN> <VBT> <IN> }
+        
+        KP : { <SC|RP|UH>+ }
+        VP : { <VBI|VBT|MD>+ <CC>* <NN|RB>* }
+        NP : { <WP|PRP|PRN>+ }
+
+        G3 : { <RB>* <IN>+ <NN>+ <VP>*}
+        G4 : { <NN>* <IN> <VP> <G3>* <NP>*}
+        G5 : { <CC> <JJ>* <G3|G4|VP|G1|NP|NN|CDI|DT|RB|NEG>+ }
+        G6 : { <RB>* <NP|VP|NEG>+ <RB>* <VP|KP|NP|DT>* <G3|G4>* }
+        G7 : { <KP|G3>+ <G3|G4|G6|VP|NP|NN|RB>+ }
+
+Fix 3:
+G1 : { <NN> <IN> <CDP> }
+        G2 : { <NN> <VBT> <IN> }
+
+        KP : { <SC|RP|UH>+ }
+        VP : { <RB>* <VBI|VBT|MD>+ <CC>* <RB|NN>* }
+        NP : { <WP|PRP|PRN>+ }
+
+        G3 : { <RB>* <IN>+ <NN>+ <KP>* <VP>* }
+        G4 : { <NN>* <IN> <VP> }
+        G5 : { <CC> <JJ>* <G3|G4|VP|G1|CDI|NEG|NN|DT>+ <NP>* }
+        G6 : { <G4>* <VP|NP|NEG>+ <VP|NP|KP>* <G3|G4|DT>* }
+        G7 : { <KP|G3>+ <G6>? <G3|G4|VP|NN|DT>* }
+

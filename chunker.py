@@ -2,18 +2,19 @@ import nltk
 import sys
 
 grammar = r"""
-		TP : { <WP>+ }
-		NP : { <NNP>+ | <FW>+ | <RP>+ }
-		KP : { <SC|CC|NEG>+ <IN>* <MD|RB>* | <MD|RB>+ | <IN>+  <SC|CC|NEG>* <MD|RB>* }
-		CP : { <CDO|CDP|CDI|CDC>+ | <SYM> }
-		
-		VP : { <VBI>+ | <VBT>+ }
-		NP : { <DT>? <CP|OP|GM|:|;|"|.|,|-|...|NN|PRN|PRP|PRL|NNG|UH>+ <JJ>* <DT>? | <DT>? <JJ> * <DT>? | <DT> }
-			
-		NP : { <KP> <NP> }
-		VP : { <VP> <VP> }
-		VP : { <KP> <VP> }
-		VP : { <VP> <NP> }
+
+        G1 : { <NN> <IN> <CDP> }
+        G2 : { <NN> <VBT> <IN> }
+
+        KP : { <SC|RP|UH>+ }
+        VP : { <VBI|VBT|MD>+ <NN|RB>*}
+        NP : { <WP|PRP|PRN>+ }
+
+        G3 : { <IN> <NN>* <VP>+ }
+        G4 : { <KP>+ <NP|VP|KP|G3|NN|PRL>+ }
+        G5 : { <NP|CC|RB|NEG|MD>+ <VP|G1|NP|G3|CDI|DT|PRL>+ }
+        G6 : { <VP> <G3> }
+        
                 
         """
 
@@ -36,12 +37,9 @@ def chunk(text):
                         text_result += ('!' + "\n")
                     else:
                         if item.count('.') != 0:
-                            text_result += ('.' + "\n")
+                            text_result += ('.' + "\n\n")
                         else:
-                            if item.count('-') != 0:
-                                text_result += ('-' + "\n")
-                            else:
-                                text_result += (str(item) + "\n")
+                            text_result += (str(item) + "\n")
     return text_result
 
 
